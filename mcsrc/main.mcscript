@@ -1,0 +1,5 @@
+function test() {
+    let allPigs = @e[type=pig]
+    allPigs.say("I am a pig!")
+    allPigs.summon("minecraft:cow",at(@s),{CustomName:"Bob"})
+}

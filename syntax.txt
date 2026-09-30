@@ -1,0 +1,47 @@
+2 syntax formats for creating new entities
+Without Variable Assignment:
+entity "minecraft:enderman" {} at 0,0,0
+[entity, string, nbt, at, expr, comma , expr, comma, expr , newline]
+[entity, expr(string), nbt, at, expr(number), comma, expr(number), comma, expr(number), newline]
+
+With Declaration:
+entity bob = "minecraft:enderman" {} at 0,0,0
+[entity, ident, assign, ident, nbt, at, expr, comma , expr, comma, expr , newline]
+
+--------------------------------------------
+
+"say" command:
+say(<arg1>)
+Tokens: [say,"(", expr(any),")", newline]
+
+
+declare a variable:
+storage x = 3
+storage data = {<nbt_data>}
+storage hello = "Hello, World!"
+
+
+create an entity:
+summon(<entity_name>, <pos>, <nbt_data>,)
+Tokens: [summon,"(", expr(string), nbt, expr(num), comma, expr(num), comma, expr(num), newline]
+
+
+---------------------------------------------
+
+mc_script:memory variables -> {}
+
+
+function command {command:<cmd>}
+
+function move_variable_to_out {name:<var_name>}
+
+function save_variable {name:<var_name>,value:<value>}
+
+function
+
+storage x = "minecraft:enderman"
+storage pos = [0,64,0]
+
+entity x{} at pos -> {
+
+}
