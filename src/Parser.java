@@ -12,7 +12,7 @@ public class Parser {
         this.tokenList = tokenList;
         this.index = 0;
         this.length = tokenList.size();
-        this.root = new RootNode("Main");
+        this.root = new RootNode();
     }
 
     //get the token at the index
@@ -58,6 +58,11 @@ public class Parser {
                 continue;
             }
 
+            if (peek().type == TokenType.RETURN) {
+                root.append(parseReturn());
+                continue;
+            }
+
             if (isCommand()) {
                 root.append(parseCommand());
                 continue;
@@ -68,12 +73,19 @@ public class Parser {
         return root;
     }
 
+    public ReturnNode parseReturn() {
+        checkFor(TokenType.RETURN);
+        //returns the expression after return.
+        ExpressionNode returnValue = parseExpression(TokenType.NEWLINE);
+
+        return new ReturnNode(returnValue);
+    }
+
+
     //checks if the next token is valid for a command call.
     public boolean isCommand() {
         return peek().type == TokenType.FUNCTION || peek().type == TokenType.SAY || peek().type == TokenType.KILL || peek().type == TokenType.SUMMON;
     }
-
-
     public CommandNode parseCommand() {
         //if the token is type say
         if (peek().type == TokenType.SAY) {
@@ -140,7 +152,6 @@ public class Parser {
 
         return new ExpressionNodeCall(functionName,params);
     }
-
 
     public SayNode parseSay() {
         if (peek(1) == null || peek(1).type != TokenType.OPEN_PAREN)
@@ -412,7 +423,12 @@ public class Parser {
         if (maxPrecedence == 0) {
             //multiple ints with no operator ex: 19 32
             if (end - start > 1) {
-                throw new RuntimeException("Invalid expression");
+               int curIndex = index;
+               index = start;
+               ExpressionNode n = parseFunctionCall();
+               index = curIndex;
+               return n;
+                //throw new RuntimeException("Invalid expression, no operators.");
             }
             return parseSingleton(start);
         }
@@ -509,6 +525,6 @@ public class Parser {
         return consume();
     }
     public Token checkFor(TokenType type) {
-        return checkFor(type, "Invalid Token, Expected: " + type);
+        return checkFor(type, "Invalid Token, Expected: " + type + ". Got: " + peek());
     }
 }

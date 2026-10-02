@@ -1,7 +1,5 @@
 package nodes;
 
-import java.util.ArrayList;
-
 public class PositionNodeDynamic extends PositionNode {
     private ExpressionNode reference;
     private VectorNode offset; // can be null, null defaults to 0,0,0

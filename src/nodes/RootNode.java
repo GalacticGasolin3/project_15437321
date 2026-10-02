@@ -4,9 +4,13 @@ import java.util.ArrayList;
 
 public class RootNode extends Node {
     private ArrayList<Node> nodeList;
-    public RootNode(String name) {
+    public RootNode(int returnIndex) {
         nodeList = new ArrayList<>();
     }
+    public RootNode() {
+        this(-1);
+    }
+
 
     //appends a new node to the tree.
     public void append(Node nodeToAppend) {

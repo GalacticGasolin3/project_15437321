@@ -15,6 +15,7 @@ public enum TokenType {
     NEWLINE,
     STORAGE_DECLARATION,
     ASSIGN,
+    RETURN,
     DOUBLE_QUOTE,
     NBT_OBJECT,
     SUMMON,

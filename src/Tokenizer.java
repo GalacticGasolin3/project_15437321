@@ -237,6 +237,7 @@ public class Tokenizer {
             case "storage", "var", "let" -> new Token(TokenType.STORAGE_DECLARATION);
             case "summon" -> new Token(TokenType.SUMMON);
             case "at" -> new Token(TokenType.AT);
+            case "return" -> new Token(TokenType.RETURN);
             case "kill" -> new Token(TokenType.KILL);
             case "false" -> new Token(TokenType.FALSE);
             case "true" -> new Token(TokenType.TRUE);

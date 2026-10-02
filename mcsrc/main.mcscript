@@ -1,5 +1,11 @@
 function test() {
-    let allPigs = @e[type=pig]
-    allPigs.say("I am a pig!")
-    allPigs.summon("minecraft:cow",at(@s),{CustomName:"Bob"})
+    let y = 3 + hello(4) - 1
+    say(y - 2)
+
+    summon("minecraft:enderman",at(@s,[hello(2),1,1]),{})
+}
+
+function hello(y) {
+    let x = 2 * y
+    return x
 }

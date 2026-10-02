@@ -17,4 +17,10 @@ public class ExpressionNodeCall extends ExpressionNodeSingleton {
     public String getType() {
         return super.getType() + "Call";
     }
+
+
+    @Override
+    public boolean operationFriendly() {
+        return true;
+    }
 }

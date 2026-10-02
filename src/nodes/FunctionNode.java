@@ -51,6 +51,7 @@ public class FunctionNode extends CommandNode {
 
 
     public static FunctionNode getFunctionFromRoot(String name,ParamNode params, RootNode root) {
+
         return new FunctionNode(root.getNodeList(), name,params);
     }
 }

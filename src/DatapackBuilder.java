@@ -2,13 +2,6 @@ import DatapackComponents.*;
 import DatapackComponents.JSON;
 import nodes.RootNode;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.stream.Stream;
-
 //class that creates the appropriate file structure for a minecraft datapack
 public class DatapackBuilder {
     //name of the datapack
@@ -31,8 +24,7 @@ public class DatapackBuilder {
         Parser p = new Parser(tokenizer.tokenize());
         RootNode root = p.parse();
         Generator g = new Generator(pack_name);
-        g.generateCodeFromTree(root);
-        buildFromTemplate(new DatapackTemplate(g.getFunctions()));
+        buildFromTemplate(new DatapackTemplate(g.generateFunctions(root)));
     }
 
     //builds from a datapack template
